@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}NatureNerdNetwork{% endblock %}</title>
+		
+            	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+       
+        {% block stylesheets %}
+
+
+
+	<link rel="icon"  href="{{asset('user/SRC/logo.png')}}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{{asset('user/css/animate.css')}}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{{asset('user/css/icomoon.css')}}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{{asset('user/css/bootstrap.css')}}">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{{asset('user/css/flexslider.css')}}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{{asset('user/css/style.css')}}">
+	<link rel="icon"  href="{{asset('user/css/panier.css')}}">
+        {% endblock %}
+
+        {% block javascripts %}
+            	<!-- jQuery -->
+	<script src="{{asset('user/js/jquery.min.js')}}"></script>
+	<!-- jQuery Easing -->
+	<script src="{{asset('user/js/jquery.easing.1.3.js')}}"></script>
+	<!-- Bootstrap -->
+	<script src="{{asset('user/js/bootstrap.min.js')}}"></script>
+	<!-- Waypoints -->
+	<script src="{{asset('user/js/jquery.waypoints.min.js')}}"></script>
+	<!-- Flexslider -->
+	<script src="{{asset('user/js/jquery.flexslider-min.js')}}"></script>
+	<!-- Main -->
+	<script src="{{asset('user/js/main.js')}}"></script>
+    	<script src="{{asset('user/js/modernizr-2.6.2.min.js')}}"></script>
+		{% endblock %}
+        
+    </head>
+    <body>
+
+	
+
+
+
+
+
+
+{% block market %}
+
+<nav class="fh5co-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html">NNN<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li ><a href="home">Home</a></li>
+							<li ><a href="group">Groups</a></li>
+							<li><a href="event">Events</a></li>
+							<li><a href="quiz">Quiz</a></li>
+							<li class="active"><a href="market">Market</a></li>
+							<li class="btn-cta"><a href="profile"><span>Nour Aboussaoud</span></a></li>
+							<li class="has-dropdown">
+								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
+								<ul class="dropdown">
+									<li><a href="livraison">Livraison</a></li>
+
+
+								</ul>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+
+{% block home %}
+
+<nav class="fh5co-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html">NNN<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li class="active" ><a href="home">Home</a></li>
+							<li ><a href="group">Groups</a></li>
+							<li><a href="event">Events</a></li>
+							<li><a href="quiz">Quiz</a></li>
+							<li><a href="market">Market</a></li>
+							<li class="btn-cta"><a href="profile"><span>Nour Aboussaoud</span></a></li>
+							<li class="has-dropdown">
+								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
+								<ul class="dropdown">
+									<li><a href="livraison">Livraison</a></li>
+
+
+								</ul>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+
+
+{% block group %}
+
+<nav class="fh5co-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html">NNN<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li ><a href="home">Home</a></li>
+							<li class="active" ><a href="group">Groups</a></li>
+							<li><a href="event">Events</a></li>
+							<li><a href="quiz">Quiz</a></li>
+							<li><a href="market">Market</a></li>
+							<li class="btn-cta"><a href="profile"><span>Nour Aboussaoud</span></a></li>
+							<li class="has-dropdown">
+								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
+								<ul class="dropdown">
+									<li><a href="livraison">Livraison</a></li>
+
+
+								</ul>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+
+
+
+{% block event %}
+
+<nav class="fh5co-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html">NNN<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li ><a href="home">Home</a></li>
+							<li  ><a href="group">Groups</a></li>
+							<li class="active" ><a href="event">Events</a></li>
+							<li><a href="quiz">Quiz</a></li>
+							<li><a href="market">Market</a></li>
+							<li class="btn-cta"><a href="profile"><span>Nour Aboussaoud</span></a></li>
+							<li class="has-dropdown">
+								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
+								<ul class="dropdown">
+									<li><a href="livraison">Livraison</a></li>
+
+
+								</ul>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+{% block quiz %}
+
+<nav class="fh5co-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo"><a href="index.html">NNN<span>.</span></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li ><a href="home">Home</a></li>
+							<li  ><a href="group">Groups</a></li>
+							<li  ><a href="event">Events</a></li>
+							<li class="active"><a href="quiz">Quiz</a></li>
+							<li><a href="market">Market</a></li>
+							<li class="btn-cta"><a href="profile"><span>Nour Aboussaoud</span></a></li>
+							<li class="has-dropdown">
+								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
+								<ul class="dropdown">
+									<li><a href="livraison">Livraison</a></li>
+
+
+								</ul>
+							</li>
+
+
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}
+
+
+
+
+
+
+
+	{% block body %}
+
+	{% endblock %}
+       
+       {{include('User/footer.html.twig')}}
+    </body>
+</html>
