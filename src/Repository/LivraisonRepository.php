@@ -45,4 +45,11 @@ class LivraisonRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+function OrderLivByEmail(){
+    $em=$this->getEntityManager();
+    return $em->createQuery('SELECT a from App\Entity\Livraison a ORDER BY a.email
+    ASC ')
+    ->getResult();
+}
+
 }

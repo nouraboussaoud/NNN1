@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\LivraisonRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: LivraisonRepository::class)]
 class Livraison
@@ -12,30 +14,62 @@ class Livraison
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+   //nom
     #[ORM\Column(length: 255)]
+
+
+   #[Assert\NotBlank(
+       message: 'This field cannot be blank.'
+   )]
+   #[Assert\Regex(
+    pattern: '/^[A-Za-zÀ-ÿ\s\-\'\']+$/',
+    message: 'Invalid value format.'
+)]
+   #[Assert\Length(min: 3,
+   minMessage: 'The name must be at least 3 characters long.".'
+   )]
     private ?string $NomC = null;
-
+//prenom
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+    message: 'This field cannot be blank.'
+    )]
     private ?string $prenomC = null;
-
+        //email
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'This field cannot be blank.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9._%+-]+@esprit\.tn$/',
+        message: 'Please enter a valid email address ending with "@esprit.tn".'
+    )]
+
     private ?string $email = null;
-
+    
+  //adresse
+    
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'This field cannot be blank.'
+    )]
+  
     private ?string $adresse = null;
-
+        ////    paytype
     #[ORM\Column(length: 255)]
     private ?string $TypePaiement = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne] //(cascade: ['persist', 'remove']) pour button delete fonctionne
     private ?Commande $IdCommande = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     private ?User $IdClient = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     private ?User $IdLivreur = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $state = null;
 
     public function getId(): ?int
     {
@@ -136,5 +170,21 @@ class Livraison
         $this->IdLivreur = $IdLivreur;
 
         return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->getId(); 
     }
 }

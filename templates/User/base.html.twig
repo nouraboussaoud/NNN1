@@ -74,7 +74,7 @@
 							<li class="has-dropdown">
 								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
 								<ul class="dropdown">
-									<li><a href="livraison">Livraison</a></li>
+									<li><a href="{{ path('app_adddynamique') }}">Livraison</a></li>
 
 
 								</ul>
@@ -228,7 +228,7 @@
 							<li class="has-dropdown">
 								<a href="panier" ><i class="fa fa-shopping-cart" font-size:24px></i></a>
 								<ul class="dropdown">
-									<li><a href="livraison">Livraison</a></li>
+									<li><a href="Livraison">Livraison</a></li>
 
 
 								</ul>
@@ -246,15 +246,9 @@
 {% endblock %}
 
 
-
-
-
-
-
 	{% block body %}
-
-	{% endblock %}
-       
+	
+	{% endblock %}  
        {{include('User/footer.html.twig')}}
     </body>
 </html>

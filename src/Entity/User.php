@@ -45,6 +45,9 @@ class User
     #[ORM\ManyToMany(targetEntity: Quiz::class, mappedBy: 'UserQuiz')]
     private Collection $quizzes;
 
+    #[ORM\OneToMany(mappedBy: 'IDUser', targetEntity: SuiviLivraison::class)]
+    private Collection $suiviLivraisons;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -53,6 +56,7 @@ class User
         $this->messageries = new ArrayCollection();
         $this->conversations = new ArrayCollection();
         $this->quizzes = new ArrayCollection();
+        $this->suiviLivraisons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,6 +275,40 @@ class User
     {
         if ($this->quizzes->removeElement($quiz)) {
             $quiz->removeUserQuiz($this);
+        }
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->getId(); 
+    }
+
+    /**
+     * @return Collection<int, SuiviLivraison>
+     */
+    public function getSuiviLivraisons(): Collection
+    {
+        return $this->suiviLivraisons;
+    }
+
+    public function addSuiviLivraison(SuiviLivraison $suiviLivraison): static
+    {
+        if (!$this->suiviLivraisons->contains($suiviLivraison)) {
+            $this->suiviLivraisons->add($suiviLivraison);
+            $suiviLivraison->setIDUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuiviLivraison(SuiviLivraison $suiviLivraison): static
+    {
+        if ($this->suiviLivraisons->removeElement($suiviLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($suiviLivraison->getIDUser() === $this) {
+                $suiviLivraison->setIDUser(null);
+            }
         }
 
         return $this;

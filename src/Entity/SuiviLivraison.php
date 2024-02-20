@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\SuiviLivraisonRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 #[ORM\Entity(repositoryClass: SuiviLivraisonRepository::class)]
 class SuiviLivraison
@@ -22,6 +24,12 @@ class SuiviLivraison
 
     #[ORM\Column(length: 255)]
     private ?string $localisatione = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Commande $IDComm = null;
+
+    #[ORM\ManyToOne(inversedBy: 'suiviLivraisons')]
+    private ?User $IDUser = null;
 
     public function getId(): ?int
     {
@@ -60,6 +68,30 @@ class SuiviLivraison
     public function setLocalisatione(string $localisatione): static
     {
         $this->localisatione = $localisatione;
+
+        return $this;
+    }
+
+    public function getIDComm(): ?Commande
+    {
+        return $this->IDComm;
+    }
+
+    public function setIDComm(?Commande $IDComm): static
+    {
+        $this->IDComm = $IDComm;
+
+        return $this;
+    }
+
+    public function getIDUser(): ?User
+    {
+        return $this->IDUser;
+    }
+
+    public function setIDUser(?User $IDUser): static
+    {
+        $this->IDUser = $IDUser;
 
         return $this;
     }

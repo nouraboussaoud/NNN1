@@ -1,0 +1,41 @@
+{% extends "Admin/base.html.twig" %}
+{% block body %}
+<!-- BEGIN: Data List -->
+                    <div class="intro-y col-span-12 overflow-auto 2xl:overflow-visible">
+                        <table class="table table-report -mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">Id Delivery</th>
+                                    <th class="whitespace-nowrap">Id Commande</th>
+                                    <th class="whitespace-nowrap">Id Client</th>
+                                    <th class="whitespace-nowrap">Id DeliveryMan </th>
+                                    <th class="text-center whitespace-nowrap">Client Name</th>
+                                    <th class="text-center whitespace-nowrap">STATUS</th>
+                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for l in Livraisons%}
+                                <tr>
+                                    <td class="text-center whitespace-nowrap">{{l.id}}</td>
+                                    <td class="text-center whitespace-nowrap">{{l.IDCommande}}</td>
+                                    <td class="text-center whitespace-nowrap">{{l.IDClient}}</td>
+                                    <td class="text-center whitespace-nowrap">{{l.IDLivreur}}</td>
+                                    <td class="text-center whitespace-nowrap">{{l.NomC}}</td>
+                                    <td class="text-center whitespace-nowrap">{{l.TypePaiement}}</td>
+                                    <td class="text-center whitespace-nowrap"><a href="{{ path('app_editLiv', { 'id': l.id }) }}" style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;" > edit</a>
+                                        <a href="{{ path('app_deleteLiv', { 'id': l.id }) }}"style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;" >delete</a>
+                                        <a href="{{ path('showLiv', {'id': l.id}) }}"style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;">show details</a>
+                                        </td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>  
+                        </table>
+                        <center><table>
+                            <tr>
+                            <td><center><button><a href="{{ path('byemail') }}" style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;">Order By Email</a></button></center></td>
+                        </tr>
+                        </table></center>
+                        <!-- END: Data List -->
+{% endblock %}

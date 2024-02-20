@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Ajoutez ici les balises meta, les liens CSS, etc. -->
+</head>
+<body>
+
+    <form  method="post">
+		{{form_errors(form1)}}
+		{{ form_start(form1) }}
+        
+        <div class="input-form mt-3">
+            {{ form_label(form1.NomC , 'First Name') }}
+			{{ form_widget(form1.NomC, {'attr': {'class': 'form-control' ,'placeholder' :'Nour'}}) }}
+			{{ form_errors(form1.NomC) }}
+        </div>
+		<div class="input-form">
+			{{ form_label(form1.prenomC , 'Last Name') }}
+			{{ form_widget(form1.prenomC, {'attr': {'class': 'form-control' ,'placeholder' :'Aboussaoud'}}) }}
+			{{ form_errors(form1.prenomC) }} 
+        </div>
+
+		
+        <div class="input-form mt-3">
+			{{ form_label(form1.email , 'Email Address') }}
+			{{ form_widget(form1.email, {'attr': {'class': 'form-control' ,'placeholder' :'exemple@esprit.tn'}}) }}
+			{{ form_errors(form1.email) }} 
+        
+        </div>
+        <div class="input-form mt-3">
+			{{ form_label(form1.State , 'State') }}
+			{{ form_widget(form1.State, {'attr': {'class': 'form-control' }}) }}
+		
+            
+        </div>
+        <div class="input-form mt-3">
+			{{ form_label(form1.adresse , 'Address') }}
+			{{ form_widget(form1.adresse, {'attr': {'class': 'form-control' ,'placeholder' :'Gabes Sud'}}) }}
+				{{ form_errors(form1.adresse) }} 
+			
+        </div>
+        <div class="input-form mt-3">
+			{{ form_label(form1.TypePaiement , 'Payment Type') }}
+			{{ form_widget(form1.TypePaiement, {'attr': {'class': 'form-control' }}) }}
+
+        </div>
+
+    
+
+        <button type="submit" class="btn btn-primary mt-5">Register</button>
+		{{ form_end(form1) }}
+    </form>
+
+</body>
+</html>

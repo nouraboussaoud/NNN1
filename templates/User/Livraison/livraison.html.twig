@@ -3,13 +3,12 @@
 
 {% block group %}   {% endblock %}
 {% block event %}   {% endblock %}
-{% block market %}   {% endblock %}
+{% block home %}   {% endblock %}
 {% block quiz %}   {% endblock %}
 {% block reclamation %}   {% endblock %}
 
 {% block body %}
 
- {{form(f)}}
-
+{{include('User/Livraison/form1.html.twig')}}
 
  {% endblock %}

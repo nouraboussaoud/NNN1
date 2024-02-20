@@ -1,0 +1,11 @@
+{% extends "Admin/base.html.twig" %}
+{% block body %}
+<center>
+    <p>Search  by number of books</p>
+    <form action="{{path('SearchByRef')}}">
+        <label>Ref Book</label>
+        <input type="text" name="nour">
+           <input type="submit" value="Search by Id">
+    </form>
+</center>
+{% endblock %}
