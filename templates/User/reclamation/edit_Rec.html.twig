@@ -1,0 +1,54 @@
+{% extends "User/base.html.twig" %}
+
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+{% block reclamation %}   {% endblock %}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Ajoutez ici les balises meta, les liens CSS, etc. -->
+</head>
+<body>
+
+    <form  method="post">
+		{{form_errors(form1)}}
+		{{ form_start(form1) }}
+        
+        <div class="input-form mt-3">
+            {{ form_label(form1.object , 'OBJECT') }}
+			{{ form_widget(form1.object, {'attr': {'class': 'form-control' ,'placeholder' :'OBJECT'}}) }}
+			{{ form_errors(form1.object) }}
+        </div>
+		<div class="input-form">
+			{{ form_label(form1.description_Rec , 'DESCRIPTION') }}
+			{{ form_widget(form1.description_Rec, {'attr': {'class': 'form-control' ,'placeholder' :'DESCRIPTION'}}) }}
+			{{ form_errors(form1.description_Rec) }} 
+        </div>
+
+		
+        <div class="input-form mt-3">
+			{{ form_label(form1.categorie , 'CATEGORY') }}
+			{{ form_widget(form1.categorie, {'attr': {'class': 'form-control' ,'placeholder' :'CATEGORY'}}) }}
+			{{ form_errors(form1.categorie) }} 
+        
+        </div>
+        
+       
+
+        <button type="submit" class="btn btn-primary mt-5">Send</button>
+		{{ form_end(form1) }}
+    </form>
+
+</body>
+</html>
+
+
+ {% endblock %}
+

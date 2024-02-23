@@ -1,0 +1,30 @@
+{% extends "Admin/base.html.twig" %}
+
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+{% block reclamation %}   {% endblock %}
+
+{%block body%}
+
+<form method="post" novalidate>
+    {{form_errors(form2)}}
+    {{ form_start(form2, {attr: {'novalidate': 'novalidate' } } ) }}
+    
+    
+    <div class="input-form mt-3">
+        {{ form_label(form2.description_Rep , 'DESCRIPTION') }}
+        {{ form_widget(form2.description_Rep, {'attr': {'class': 'form-control' ,'placeholder' :'Content of the editor.'}} )}}
+        {{ form_errors(form2.description_Rep) }}
+    </div>
+    
+    
+
+    <button type="submit" class="btn btn-primary mt-5">Send</button>
+    {{ form_end(form2) }}
+</form>
+
+
+{% endblock %}
