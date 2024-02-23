@@ -1,0 +1,40 @@
+{% extends "Admin/base.html.twig" %}
+
+
+{% block body %}
+
+<table style="width:50%;margin: 0 auto;"   class="table">
+    <thead class="table-dark">
+    <thread>
+      <tr>
+        <th class="whitespace-nowrap"> id </th>
+        <th class="whitespace-nowrap"> quiz Name </th>
+        <th class="whitespace-nowrap"> username </th>
+        <th class="whitespace-nowrap"> date reward  </th>
+      </tr>
+    </thead> 
+  
+   <tbody>
+      <tr>
+        {% for certif in certifs %}
+          <td>{{certif.id}}</td>
+          <td>{{certif.quiz.quizname}}</td>
+          <td>{{certif.user.username}}</td>
+         
+      
+          
+          <td><a href="{{ path('certifdelete', {'id': certif.id}) }}" class="btn btn-danger">Delete </a></td>
+          
+         
+        </tr>
+  
+        {% endfor %}
+
+        
+   </tbody>
+  </table>
+  <div style="text-align: center;">
+  <a href="{{ path('certifadd') }}"  class="btn btn-primary"  >ADD Certification </a>
+</div>
+   {% endblock %}
+  

@@ -1,0 +1,73 @@
+{% extends "Admin/base.html.twig" %}
+
+{% block body %}
+
+<div style="width:50%;margin: 0 auto;" class="validate-form" align="center">
+    <h2>Add Question</h2>
+    <div>
+        {{ form_start(formajout, {attr: {'novalidate': 'novalidate'}}) }}
+
+        <div  style="display:none" class="form-group">
+            <label for="quiz">Quiz</label>
+            {{ form_widget(formajout.quiz, { 'attr': {'class': 'form-control', 'id': 'quiz'} }) }}
+            <div class="form-help">
+            {{ form_errors(formajout.quiz) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="text">The Question</label>
+            {{ form_widget(formajout.text, { 'attr': {'class': 'form-control', 'id': 'text'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.text) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="choix1">Correct Answer</label>
+            {{ form_widget(formajout.choix1, { 'attr': {'class': 'form-control', 'id': 'choix1'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.choix1) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="choix2">Choice 2</label>
+            {{ form_widget(formajout.choix2, { 'attr': {'class': 'form-control', 'id': 'choix2'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.choix2) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="choix3">Choice 3</label>
+            {{ form_widget(formajout.choix3, { 'attr': {'class': 'form-control', 'id': 'choix3'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.choix3) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="choix4">Choice 4</label>
+            {{ form_widget(formajout.choix4, { 'attr': {'class': 'form-control', 'id': 'choix4'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.choix4) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="points">Points</label>
+            {{ form_widget(formajout.points, { 'attr': {'class': 'form-control', 'id': 'points'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.points) }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form_end(formajout) }}
+
+        <a href="{{ path('quizshow') }}">Back to List</a>
+    </div>
+</div>
+
+{% endblock %}

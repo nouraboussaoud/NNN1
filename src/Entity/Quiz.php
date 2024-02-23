@@ -6,6 +6,7 @@ use App\Repository\QuizRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
 class Quiz
@@ -16,27 +17,47 @@ class Quiz
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+        /**
+        * @Assert\NotBlank(message="Please write the coorect choice")
+        * @Assert\Length(max=10, maxMessage="Your Quiz Name cannot be longer than {{ limit }} ")
+        */
     private ?string $quizName = null;
 
     #[ORM\Column(length: 255)]
+     /**
+    * @Assert\NotBlank(message="Please write the coorect choice")
+    */
     private ?string $descQuiz = null;
 
     #[ORM\Column(length: 255)]
+     /**
+    * @Assert\NotBlank(message="Please write the coorect choice")
+    */
     private ?string $type = null;
 
     #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: Question::class)]
     private Collection $Questions;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'quizzes')]
-    private Collection $UserQuiz;
+
+    
+
+    
+   
 
     #[ORM\Column]
+     /**
+    * @Assert\NotBlank(message="Please write the coorect choice")
+    */
     private ?int $Points = null;
+
+    #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: Certification::class, orphanRemoval: true)]
+    private Collection $certification;
 
     public function __construct()
     {
         $this->Questions = new ArrayCollection();
-        $this->UserQuiz = new ArrayCollection();
+        $this->certification = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -110,29 +131,7 @@ class Quiz
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUserQuiz(): Collection
-    {
-        return $this->UserQuiz;
-    }
-
-    public function addUserQuiz(User $userQuiz): static
-    {
-        if (!$this->UserQuiz->contains($userQuiz)) {
-            $this->UserQuiz->add($userQuiz);
-        }
-
-        return $this;
-    }
-
-    public function removeUserQuiz(User $userQuiz): static
-    {
-        $this->UserQuiz->removeElement($userQuiz);
-
-        return $this;
-    }
+   
 
     public function getPoints(): ?int
     {
@@ -142,6 +141,36 @@ class Quiz
     public function setPoints(int $Points): static
     {
         $this->Points = $Points;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Certification>
+     */
+    public function getCertification(): Collection
+    {
+        return $this->certification;
+    }
+
+    public function addCertification(Certification $certification): static
+    {
+        if (!$this->certification->contains($certification)) {
+            $this->certification->add($certification);
+            $certification->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCertification(Certification $certification): static
+    {
+        if ($this->certification->removeElement($certification)) {
+            // set the owning side to null (unless already changed)
+            if ($certification->getQuiz() === $this) {
+                $certification->setQuiz(null);
+            }
+        }
 
         return $this;
     }

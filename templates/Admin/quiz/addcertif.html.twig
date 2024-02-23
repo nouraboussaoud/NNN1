@@ -1,0 +1,43 @@
+{% extends "Admin/base.html.twig" %}
+
+{% block body %}
+<div style="width:50%;margin: 0 auto;"  class="validate-form " align="center">
+    <h2>Add a Certification</h2>
+    <div>
+      {{ form_start(formajout, {attr: {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+            <label for="text">Quiz Name</label>
+            {{ form_widget(formajout.quiz, { 'attr': {'class': 'form-control', 'id': 'text'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.quiz) }}
+            </div>
+     </div>
+
+     <div class="form-group">
+            <label for="text">Username</label>
+            {{ form_widget(formajout.user, { 'attr': {'class': 'form-control', 'id': 'text'} }) }}
+            <div style="color:red" class="form-help">
+            {{ form_errors(formajout.user) }}
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form_end(formajout) }}
+
+        <a href="{{ path('certifshow') }}">Back to List</a>
+    </div>
+</div>
+
+
+
+
+     {% endblock %}
+
+
+
+
+
+
+
+

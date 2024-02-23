@@ -1,0 +1,73 @@
+{% extends "User/base.html.twig" %}
+
+{% block stylesheets %}
+
+	{{ parent() }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('user/js/quizscript.js')}}"></script>
+
+{% endblock %}
+{% block home %}{% endblock %}
+{% block group %}{% endblock %}
+{% block event %}{% endblock %}
+{% block market %}{% endblock %}
+
+{% block body %}
+	<div class="quizpass">
+
+
+		<section class="section-1 " id="0">
+			<main>
+				<div class="text-container">
+
+					<a id="btn" onclick="shuffle()" href='#'>stratquiz</a>
+
+
+				</div>
+
+
+			</main>
+		</section>
+
+		{% set i = 1 %}
+		<section class="section-1" id="section-1">
+<main>
+		<form method="POST" action="{{ path('check_answers', {'id': 1 ,'idquiz': idquiz} )}}">
+			{% for quest in questions %}
+
+				<label for="question">Question:</label>
+				
+				<!-- Display the question here -->
+
+				<fieldset>
+					<legend>{{ quest.text}}</legend>
+					<div>
+						<input type="radio" id="option1" name="answer-{{i}}" value="{{ quest.choix1}}">
+						<label for="option1">{{ quest.choix1}}</label>
+					</div>
+					<div>
+						<input type="radio" id="option2" name="answer-{{i}}" value="{{ quest.choix2}}">
+						<label for="option2">{{ quest.choix2}}</label>
+					</div>
+					<div>
+						<input type="radio" id="option3" name="answer-{{i}}" value="{{ quest.choix3}}">
+						<label for="option3">{{ quest.choix3}}</label>
+					</div>
+					<div>
+						<input type="radio" id="option4" name="answer-{{i}}" value="{{ quest.choix4}}">
+						<label for="option4">{{ quest.choix4}}</label>
+					</div>
+				</fieldset>
+				{% set i = i + 1 %}
+
+			{% endfor %}
+			<button type="submit">Submit</button>
+		</form>
+		</main>
+		</section>
+
+	{% endblock %}

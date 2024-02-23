@@ -42,9 +42,7 @@ class User
     #[ORM\ManyToMany(targetEntity: Conversations::class, mappedBy: 'UserConversation')]
     private Collection $conversations;
 
-    #[ORM\ManyToMany(targetEntity: Quiz::class, mappedBy: 'UserQuiz')]
-    private Collection $quizzes;
-
+   
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -52,7 +50,7 @@ class User
         $this->groupes = new ArrayCollection();
         $this->messageries = new ArrayCollection();
         $this->conversations = new ArrayCollection();
-        $this->quizzes = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -249,30 +247,6 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection<int, Quiz>
-     */
-    public function getQuizzes(): Collection
-    {
-        return $this->quizzes;
-    }
-
-    public function addQuiz(Quiz $quiz): static
-    {
-        if (!$this->quizzes->contains($quiz)) {
-            $this->quizzes->add($quiz);
-            $quiz->addUserQuiz($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuiz(Quiz $quiz): static
-    {
-        if ($this->quizzes->removeElement($quiz)) {
-            $quiz->removeUserQuiz($this);
-        }
-
-        return $this;
-    }
+  
+   
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Entity\Quiz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,42 @@ class QuestionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Question::class);
     }
+
+
+    
+    public function showquestionbyid($id)
+    {
+        return $this->createQueryBuilder('e') 
+        ->andWhere('e.quiz = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getResult();
+    }
+
+
+    public function Deletequeswehere($id)
+{
+    $em = $this->getEntityManager();
+    $query = $em->createQuery(
+        'DELETE App\Entity\Question a WHERE a.quiz = :id'
+    )->setParameter('id', $id);
+
+    return $query->getResult();
+}
+
+
+  
+
+    public function getTotalPointsForQuiz(Quiz $quiz): int
+    {
+        return $this->createQueryBuilder('q')
+            ->select('SUM(q.points)')
+            ->where('q.quiz = :quiz')
+            ->setParameter('quiz', $quiz)
+            ->getQuery()
+            ->getSingleScalarResult() ?? 0;
+    }
+
 
 //    /**
 //     * @return Question[] Returns an array of Question objects

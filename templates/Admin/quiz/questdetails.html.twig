@@ -1,0 +1,110 @@
+  {% extends "Admin/base.html.twig" %}
+
+
+
+{% block body %}
+  <table align="center" border="1">
+
+       
+
+        <tbody>
+            <tr>
+               <th >ID</th>
+                <td>{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th>Quiz Name</th>
+                <td>{{ question.quiz.quizName }}</td>
+            </tr>
+
+            <tr>
+                <th>Question</th>
+                <td>{{ question.text }}</td>
+            </tr>
+            <tr>
+                <th>Correct</th>
+                <td> {{question.choix1}} </td>
+            </tr>
+             <tr>
+                <th>choix 1</th>
+                <td> {{question.choix2}} </td>
+            </tr>
+             <tr>
+                <th>choix 2</th>
+                <td> {{question.choix3}} </td>
+            </tr>
+             <tr>
+                <th>choix 3</th>
+                <td> {{question.choix4}} </td>
+            </tr>
+             <tr>
+                <th>choix 4</th>
+                <td> {{question.choix1}} </td>
+            </tr>
+ <tr>
+                <th>points</th>
+                <td> {{question.Points}} </td>
+            </tr>
+
+            
+        </tbody>
+    </table>
+ <div style="width:50%;margin: 0 auto;"  class="validate-form " align="center">
+    <h2>Add Question</h2>
+    <div>
+        {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+
+        <div style="display:none" class="form-group">
+            <label for="quiz">Quiz</label>
+            {{ form_widget(form.quiz, { 'attr': {'class': 'form-control', 'id': 'quiz'} }) }}
+            {{ form_errors(form.quiz) }}
+        </div>
+
+        <div class="form-group">
+            <label for="text">The Question</label>
+            {{ form_widget(form.text, { 'attr': {'class': 'form-control', 'id': 'text'} }) }}
+            {{ form_errors(form.text) }}
+        </div>
+
+        <div class="form-group">
+            <label for="choix1">Correct Answer</label>
+            {{ form_widget(form.choix1, { 'attr': {'class': 'form-control', 'id': 'choix1'} }) }}
+            {{ form_errors(form.choix1) }}
+        </div>
+
+        <div class="form-group">
+            <label for="choix2">Choice 2</label>
+            {{ form_widget(form.choix2, { 'attr': {'class': 'form-control', 'id': 'choix2'} }) }}
+            {{ form_errors(form.choix2) }}
+        </div>
+
+        <div class="form-group">
+            <label for="choix3">Choice 3</label>
+            {{ form_widget(form.choix3, { 'attr': {'class': 'form-control', 'id': 'choix3'} }) }}
+            {{ form_errors(form.choix3) }}
+        </div>
+
+        <div class="form-group">
+            <label for="choix4">Choice 4</label>
+            {{ form_widget(form.choix4, { 'attr': {'class': 'form-control', 'id': 'choix4'} }) }}
+            {{ form_errors(form.choix4) }}
+        </div>
+
+        <div class="form-group">
+            <label for="points">Points</label>
+            {{ form_widget(form.points, { 'attr': {'class': 'form-control', 'id': 'points'} }) }}
+            {{ form_errors(form.points) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{ path('questiondelete', {'id': question.id,'quizid': question.quiz.id}) }}" class="btn btn-danger">Delete</a>
+        {{ form_end(form) }}
+        
+<div>
+        <a href="{{ path('quizadd') }}">Back to List</a> <a href="{{ path('quizedit',{'id':question.quiz.id }) }}">Back to {{ question.quiz.quizName }}</a>
+    </div>
+    </div>
+</div>
+
+    
+ {% endblock %}

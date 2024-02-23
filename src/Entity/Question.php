@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
 {
@@ -14,25 +15,51 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
 
+    /**
+    * @Assert\NotBlank(message="Please write the question")
+    */
+
+    private ?string $text = null;
+   
     #[ORM\Column(length: 255)]
+    
+    /**
+    * @Assert\NotBlank(message="Please write the coorect choice")
+    */
     private ?string $choix1 = null;
 
     #[ORM\Column(length: 255)]
+     /**
+    * @Assert\NotBlank(message="Please write the second choice")
+    */
     private ?string $choix2 = null;
 
     #[ORM\Column(length: 255)]
+     /**
+    * @Assert\NotBlank(message="Please write the third choice")
+    */
     private ?string $choix3 = null;
 
     #[ORM\Column(length: 255)]
+     /**
+    * @Assert\NotBlank(message="Please write the fourth choice")
+    */
     private ?string $choix4 = null;
 
     #[ORM\Column]
+      /**
+    * @Assert\NotBlank(message="Please write the points")
+
+    */
     private ?int $points = null;
 
     #[ORM\ManyToOne(inversedBy: 'Questions')]
     private ?Quiz $quiz = null;
+
+
+
+    
 
     public function getId(): ?int
     {

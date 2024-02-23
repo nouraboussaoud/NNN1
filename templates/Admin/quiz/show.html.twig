@@ -1,0 +1,88 @@
+{% extends "Admin/base.html.twig" %}
+
+
+
+{% block body %}
+ 
+ 
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th class="whitespace-nowrap">id</th>
+            <th class="whitespace-nowrap">Quiz name</th>
+            <th class="whitespace-nowrap">Description</th>
+            <th class="whitespace-nowrap">Type</th>
+            <th class="whitespace-nowrap">Points</th>
+            <th class="whitespace-nowrap">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for onequiz in quiz %}
+        <tr>
+            
+            <td>{{ onequiz.id }}</td>
+            <td>{{ onequiz.quizname }}</td>
+            <td>{{ onequiz.descquiz }}</td>
+            <td>{{ onequiz.type }}</td>
+            <td>{{ onequiz.points }}</td>
+            <td>
+                <a href="{{ path('quizedit', {'id': onequiz.id}) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ path('quizdelete', {'id': onequiz.id}) }}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<div style="width:50%;margin: 0 auto;" class="intro-y col-span-12 lg:col-span-6">
+
+  {{ form_start(formajout, {attr: {'novalidate': 'novalidate'}}) }}
+<!-- BEGIN: Validation Form -->
+<form class="validate-form">
+    <div class="input-form">
+        <label for="validation-form-1" class="form-label w-full flex flex-col sm:flex-row"> Quiz Name <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Required</span> </label>
+        {{ form_widget(formajout.quizName, { 'attr': {'id': 'validation-form-1', 'class': 'form-control', 'placeholder': 'Quiz Name'} }) }}
+    		<div style="color:red" class="form-help">
+            {{ form_errors(formajout.quizName) }}
+            </div>
+    </div>
+
+    <div class="input-form mt-3">
+        <label for="validation-form-2" class="form-label w-full flex flex-col sm:flex-row"> Description <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Required</span> </label>
+        {{ form_widget(formajout.descQuiz, { 'attr': {'id': 'validation-form-2', 'class': 'form-control', 'placeholder': 'Description'} }) }}
+        		<div style="color:red" class="form-help">
+            {{ form_errors(formajout.descQuiz) }}
+            </div>
+    </div>
+
+    <div class="input-form mt-3">
+        <label for="validation-form-3" class="form-label w-full flex flex-col sm:flex-row"> Type <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Required</span> </label>
+        {{ form_widget(formajout.type, { 'attr': {'id': 'validation-form-3', 'class': 'form-control', 'placeholder': 'Type'} }) }}
+        		<div style="color:red" class="form-help">
+            {{ form_errors(formajout.type) }}
+            </div>
+    </div>
+
+    <div class="input-form mt-3">
+        <label for="validation-form-4" class="form-label w-full flex flex-col sm:flex-row"> Points <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Required</span> </label>
+        {{ form_widget(formajout.Points, { 'attr': {'id': 'validation-form-4', 'class': 'form-control', 'placeholder': 'Points'} }) }}
+       		<div style="color:red" class="form-help">
+            {{ form_errors(formajout.Points) }}
+            </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-5">Add a quiz</button>
+    <a href="{{ path('certifshow') }}">See Certifications</a> 
+</form>
+
+{{ form_end(formajout) }}
+
+  
+
+</div>
+  
+
+  
+
+ {% endblock %}
