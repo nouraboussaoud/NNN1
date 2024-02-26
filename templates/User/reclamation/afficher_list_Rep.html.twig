@@ -1,0 +1,54 @@
+{% extends "User/base.html.twig" %}
+
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+{% block reclamation %}   {% endblock %}
+
+{%block body%}
+
+<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+
+    
+    <table class="table table-report -mt-2">
+        <thead>
+            <tr>
+                
+                <th class="text-center whitespace-nowrap">ID REPONSE</th>
+                <th class="text-center whitespace-nowrap">DESCRIPTION</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+
+            {%for r in reponses %}
+            <tr class="intro-x">
+                <td>
+                    <a href="" class="font-medium whitespace-nowrap"></a> 
+                </td>
+
+                <td>
+                    <a href="" class="font-medium whitespace-nowrap">{{ r.id }}</a> 
+                 </td>
+                
+
+                <td>
+                    <a href="" class="font-medium whitespace-nowrap">{{ r.getDescriptionRep() }}</a> 
+                 </td>
+
+                 
+               
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+</div>
+{% endblock %}
+

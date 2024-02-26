@@ -20,12 +20,16 @@ class Reclamation
     private ?int $id = null;
    
     #[ORM\Column(length: 255)]
+     /**
+     * @Assert\NotBlank
+     * @Assert\Length(min="3", max="255")
+     */
      
     private ?string $object = null;
  /**
      * @Assert\NotBlank(message="La description ne peut pas être vide.")
      * @Assert\Length(
-     *     min=10,
+     *     min=5,
      *     max=200,
      *     minMessage="La description doit avoir au moins {{ limit }} caractères.",
      *     maxMessage="La description ne peut pas dépasser {{ limit }} caractères."
@@ -37,7 +41,7 @@ class Reclamation
  /**
      * @Assert\NotBlank(message="La description ne peut pas être vide.")
      * @Assert\Length(
-     *     min=10,
+     *     min=5,
      *     max=200,
      *     minMessage="La description doit avoir au moins {{ limit }} caractères.",
      *     maxMessage="La description ne peut pas dépasser {{ limit }} caractères."

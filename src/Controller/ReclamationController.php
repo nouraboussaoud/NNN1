@@ -43,7 +43,7 @@ class ReclamationController extends AbstractController
 
         $form3A59->handleRequest($req);
        
-        if ($form3A59->isSubmitted()) {
+        if ($form3A59->isSubmitted()&& $form3A59->isValid()) {
 
 
             $em->persist($aut);
@@ -103,6 +103,27 @@ class ReclamationController extends AbstractController
     
     }
 
+   
+
+    #[Route('/delete_Rec/{id}', name: 'd_admin')]
+    public function delete_Rec_admin(Request $request, $id, ManagerRegistry $manager, ReclamationRepository $autrep): Response
+    {
+        $em = $manager->getManager();
+        $aut = $autrep->find($id);
+
+        if ($aut) {
+            // Supprimer l'entité de la base de données
+            $em->remove($aut);
+            $em->flush();
+    
+            $this->addFlash('success', 'La réclamation a été supprimée avec succès.');
+        } else {
+            $this->addFlash('danger', 'Réclamation non trouvée.');
+        }
+
+        
+        return $this->redirectToRoute('app_admin');
+    }
     
 
 

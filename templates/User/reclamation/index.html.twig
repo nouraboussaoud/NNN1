@@ -19,31 +19,36 @@
 
 	<div class="intro-y box p-5 mt-5">
 
-    <form  method="post"  novalidate>
-		{{ form_start(form1, {attr: {'novalidate': 'novalidate' } } ) }}
+    <form  method="post" >
+		{{ form_start(form1 ) }}
         
         <div class="input-form mt-3">
-			{{ form_widget(form1.object, {'attr': {'id': 'validation-form-1','class': 'form-control' ,'placeholder' :'OBJECT','required': 'required'} } ) }}
-			<div class="form-help text-center" style="color:red">
+			
+			{{ form_label(form1.object , 'OBJECT') }}
+			{{ form_widget(form1.object, {'attr': {'class': 'form-control' ,'placeholder' :'OBJECT'}}) }}
+			<div style="color:red">
 				{{ form_errors(form1.object) }}
 			</div>
         </div>
 
 		<div class="input-form">
 			{{ form_label(form1.description_Rec , 'DESCRIPTION') }}
-			{{ form_widget(form1.description_Rec, {'attr': {'id': 'validation-form-1','class': 'form-control' ,'placeholder' :'DESCRIPTION' } } ) }}
-			{{ form_errors(form1.description_Rec) }} 
+			{{ form_widget(form1.description_Rec, {'attr': {'class': 'form-control' ,'placeholder' :'DESCRIPTION'}}) }}
+			<div style="color:red">
+				{{ form_errors(form1.description_Rec) }} 
+			</div>
         </div>
 
 		
         <div class="input-form mt-3">
 			{{ form_label(form1.categorie , 'CATEGORY') }}
-			{{ form_widget(form1.categorie, {'attr': {'id': 'validation-form-1','class': 'form-control' ,'placeholder' :'CATEGORY' } } ) }}
-			{{ form_errors(form1.categorie) }} 
-        
+			{{ form_widget(form1.categorie, {'attr': {'class': 'form-control' ,'placeholder' :'CATEGORY'}}) }}
+			<div style="color:red">
+				{{ form_errors(form1.categorie) }} 
+			</div>
         </div>
         
-        <button type="submit" class="btn btn-primary mt-5">Send</button>
+		<button class="btn btn-raised btn-primary btn-round waves-effect"{{ button_label|default('Save') == 'Save' ? ' formnovalidate' }}>Save</button>		
 		{{ form_end(form1) }}
 	
     </form>

@@ -54,7 +54,7 @@ class ReponseController extends AbstractController
         return $this->renderForm('Admin/reponse/Add_rep.html.twig', ['form2' => $form3]);
     }
 
-    
+
     #[Route('/edit_Rep/{id}', name: 'Edit_Rep')]
     public function editrepas(Request $request, ManagerRegistry $manager, $id, ReponseRepository $autrep): Response
     {
@@ -92,5 +92,13 @@ class ReponseController extends AbstractController
         return $this->redirectToRoute('app_list_Rep');
     }
 
+
+    #[Route('/list_user_Rep', name: 'User_list_Rep')]
+    public function afficher_Rep(ReponseRepository $repos): Response
+    {
+       return $this->render('User/reclamation/afficher_list_Rep.html.twig',
+       ['reponses'=>$repos->findAll(),]);
+    }
+   
 
 }
