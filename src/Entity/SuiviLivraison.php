@@ -6,6 +6,8 @@ use App\Repository\SuiviLivraisonRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 #[ORM\Entity(repositoryClass: SuiviLivraisonRepository::class)]
@@ -16,16 +18,25 @@ class SuiviLivraison
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Livraison $IdLivraison = null;
+    #[ORM\OneToOne]
+    private ?Livraison $IdLivraison = null;    
+    
+   
+   #[Assert\GreaterThanOrEqual("today")]
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateComm = null;
 
+    #[Assert\Length(min: 4,
+   minMessage: 'The location must be at least 4 characters long.".'
+    )]
+    #[Assert\NotBlank(
+        message: 'This field cannot be blank.'
+        )]
     #[ORM\Column(length: 255)]
     private ?string $localisatione = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne]
     private ?Commande $IDComm = null;
 
     #[ORM\ManyToOne(inversedBy: 'suiviLivraisons')]
@@ -95,4 +106,10 @@ class SuiviLivraison
 
         return $this;
     }
+
+
+public function __toString()
+{
+    return $this->getDateComm(); 
+}
 }

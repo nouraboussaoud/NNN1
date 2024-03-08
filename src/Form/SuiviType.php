@@ -15,7 +15,18 @@ class SuiviType extends AbstractType
             ->add('dateComm')
             ->add('localisatione')
             ->add('IdLivraison')
+             ->add('IDComm')
+             ->add('IDUser')
         ;
+
+        $builder
+        ->add('localisatione', null, [
+            'required' => false, // Le champ "loc" ne sera plus obligatoire
+        ])
+       
+      
+      
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -71,6 +71,16 @@ class Livraison
     #[ORM\Column(length: 255)]
     private ?string $state = null;
 
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 8,
+   minMessage: 'The phone number must be at least 8 characters long.".'
+   )]
+   #[Assert\NotBlank(
+    message: 'This field cannot be blank.'
+)]
+    private ?string $PhoneN = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -186,5 +196,17 @@ class Livraison
     public function __toString()
     {
         return $this->getId(); 
+    }
+
+    public function getPhoneN(): ?string
+    {
+        return $this->PhoneN;
+    }
+
+    public function setPhoneN(string $PhoneN): static
+    {
+        $this->PhoneN = $PhoneN;
+
+        return $this;
     }
 }

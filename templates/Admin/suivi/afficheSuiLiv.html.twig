@@ -1,0 +1,40 @@
+{% extends "Admin/base.html.twig" %}
+{% block body %}
+<!-- BEGIN: Data List -->
+                    <div class="intro-y col-span-12 overflow-auto 2xl:overflow-visible">
+                        <table class="table table-report -mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">Order Date</th>
+                                    <th class="whitespace-nowrap">Location</th>
+                                    <th class="whitespace-nowrap">Id Delivery</th>
+                                    <th class="whitespace-nowrap">Id Order</th>
+                                    <th class="whitespace-nowrap">Id User</th>
+                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in details %}
+                                <tr>
+                                    <td class="text-center whitespace-nowrap">{{d.dateComm | date  }}</td>
+                                    <td class="text-center whitespace-nowrap">{{d.localisatione}}</td>
+                                    <td class="text-center whitespace-nowrap">{{d.IdLivraison}}</td>
+                                    <td class="text-center whitespace-nowrap">{{d.IdComm}}</td>
+                                    <td class="text-center whitespace-nowrap">{{d.IdUser}}</td>
+                                    <td class="text-center whitespace-nowrap"><a href="{{ path('app_editSuiLiv', { 'id': d.id }) }}" style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;" > edit</a>
+                                        <a href="{{ path('app_deleteSuiLiv', { 'id': d.id }) }}"style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;" >delete</a> 
+                                        </td>                          
+                                {% endfor %}
+
+                            </tbody>  
+                        </table>
+                        <center><table>
+                            <tr>
+                            <td><center><button><a href="{{ path('app_add') }}" style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;">Add Details</a></button></center></td>
+                        </tr>
+                        <tr>
+                            <td><center><button><a href="{{ path('app_suivi') }}" style="color: #fff; background-color: #35dc72; padding: 8px 16px; text-decoration: none; border-radius: 4px; display: inline-block;">Return</a></button></center></td>
+                        </tr>
+                        </table></center>
+                        <!-- END: Data List -->
+{% endblock %}

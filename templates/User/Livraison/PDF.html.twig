@@ -1,0 +1,45 @@
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en" class="light">
+    <!-- BEGIN: Head -->
+    {% if l is not null %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">DESCRIPTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Email Address :{{ l.email }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-b dark:border-darkmode-400">
+                        <div class="font-medium whitespace-nowrap">Phone Number :{{ l.PhoneN }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="font-medium whitespace-nowrap">State :{{ l.State }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="font-medium whitespace-nowrap">Address :{{ l.adresse }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="font-medium whitespace-nowrap">Payment Type :{{ l.TypePaiement }}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+    </body>
+</html>
+
+{% endblock %}

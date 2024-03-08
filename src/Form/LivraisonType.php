@@ -17,6 +17,7 @@ class LivraisonType extends AbstractType
             ->add('NomC')
             ->add('prenomC')
             ->add('email')
+            ->add('PhoneN')
             ->add('State',ChoiceType::class ,[
                 'choices'=>[
                     'Tunisia' => 'Tunisia' ,
@@ -28,16 +29,27 @@ class LivraisonType extends AbstractType
             ->add('adresse')
             ->add('TypePaiement',ChoiceType::class ,[
                 'choices'=>[
-                    'Online Payment' => 'Online Payment' ,
                     'Cash on delivery' =>'Cash on delivery' ,
-
                 ],
             ])
-            //->add('IdCommande')
-         //  ->add('IdClient')
-         //   ->add('IdLivreur')
+            ->add('IdCommande')
+           ->add('IdClient')
+         ->add('IdLivreur')
 
         ;
+        $builder
+        ->add('NomC', null, [
+            'required' => false, // Le champ "nom" ne sera plus obligatoire
+        ])
+       
+        ->add('prenomC', null, [
+            'required' => false, // Le champ "nom" ne sera plus obligatoire
+        ])
+        // Ajoutez d'autres champs ici
+        ->add('adresse', null, [
+            'required' => false, // Le champ "nom" ne sera plus obligatoire
+        ])
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -46,4 +58,5 @@ class LivraisonType extends AbstractType
             'data_class' => Livraison::class,
         ]);
     }
+    
 }

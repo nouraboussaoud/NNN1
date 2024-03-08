@@ -45,11 +45,23 @@ class LivraisonRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-function OrderLivByEmail(){
-    $em=$this->getEntityManager();
-    return $em->createQuery('SELECT a from App\Entity\Livraison a ORDER BY a.email
-    ASC ')
-    ->getResult();
+function OrderName(){
+    $em = $this->getEntityManager();
+    return $em->createQuery('SELECT a FROM App\Entity\Livraison a ORDER BY a.NomC ASC')
+             ->getResult();
 }
+public function countByRegion()
+    {
+        //$query = $this->createQueryBuilder('c')
+        //->select('SUBSTRING(d.date, 1, 10) as date, COUNT(c) as count')
+        //->groupBy('date')
+        //;
+        //return $query->getQuery()->getResult();
+        $query = $this->getEntityManager()->createQuery("
+           SELECT l.state as regionL, count(l) as countL FROM App\Entity\Livraison l where l.state IS NOT NULL GROUP BY regionL 
+       ");
+        return $query->getResult();
+    }
+
 
 }

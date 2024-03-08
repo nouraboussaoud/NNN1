@@ -1,3 +1,8 @@
+{% extends "Admin/base.html.twig" %}
+
+
+{% block body %}
+
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +12,7 @@
 
 
 <body>
-    <form method="post"  novalidate>
+    <form method="post" novalidate>
         {{ form_errors(form1) }}
         {{ form_start(form1, {'attr': {'novalidate': 'novalidate'}}) }}
         
@@ -51,10 +56,26 @@
             {{ form_label(form1.TypePaiement , 'Payment Type') }}
             {{ form_widget(form1.TypePaiement, {'attr': {'class': 'form-control' }}) }}
         </div>
+        <div class="input-form">
+            {{ form_label(form1.IdCommande , 'IdCommande') }}
+            {{ form_widget(form1.IdCommande, {'attr': {'class': 'form-control' }}) }}
+        </div>
 
-        <button type="submit" class="btn btn-primary mt-5"><a href="{{ path('app_affUserSui') }}" > Next</a></button>
+        <div class="input-form">
+            {{ form_label(form1.IdClient , 'IDClient') }}
+            {{ form_widget(form1.IdClient, {'attr': {'class': 'form-control' }}) }}
+        </div>
+        <div class="input-form">
+            {{ form_label(form1.IdLivreur , 'IDLivreur') }}
+            {{ form_widget(form1.IdLivreur, {'attr': {'class': 'form-control' }}) }}
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mt-5">Register</button>
         {{ form_end(form1) }}
 	</form>
 </body>
 
 </html>
+
+ {% endblock %}
