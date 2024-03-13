@@ -13,11 +13,13 @@ class Reponse
     #[ORM\Column]
     private ?int $id = null;
 
+    
+
     #[ORM\Column(length: 255)]
     private ?string $description_Rep = null;
 
     #[ORM\ManyToOne(inversedBy: 'Rec_Rep')]
-    private ?Reclamation $Rep_Rec = null;
+    private ?Reclamation $Rep_Rec ;
 
     public function getId(): ?int
     {

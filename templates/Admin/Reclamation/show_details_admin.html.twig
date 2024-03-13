@@ -1,0 +1,100 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+
+{% block body %}
+
+    <style>   
+        .body-with-white-background {
+            background-color: #ffffff; /* White */
+            padding: 20px; /* Add padding if necessary */
+        }
+
+        .reclamation-details {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #006400; /* Dark Green */
+            margin-bottom: 20px;
+        }
+
+        .details-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px; /* Add vertical spacing */
+        }
+
+        .details-value {
+            font-size: 16px;
+            margin-bottom: 20px; /* Add vertical spacing */
+        }
+
+        .responses-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px; /* Add vertical spacing */
+        }
+
+        .response-item {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn-treat-reclamation {
+            margin-top: 20px;
+        }
+    </style>    
+
+    <div class="body-with-white-background">
+        <div class="reclamation-details">
+            <h2>Reclamation Details</h2>
+        </div>
+
+        <div class="details-label">Object:</div>
+        <div class="details-value">{{ reclamation.object }}</div>
+
+        <div class="details-label">Category:</div>
+        <div class="details-value">{{ reclamation.categorie }}</div>
+
+        <div class="details-label">Description:</div>
+        <div class="details-value">{{ reclamation.getDescriptionRec() }}</div>
+
+        <div class="details-label">Image:</div>
+            {% if reclamation.getImageFile() %}
+                 <img src="{{ asset('uploads/reclamation_images/' ~ reclamation.getImageFile()) }}" alt="Reclamation Image" class="details-value">
+            {% else %}
+                  <div class="details-value">No image uploaded</div>
+            {% endif %}
+
+        <div class="responses-list">
+            <h3   class="details-label">Responses:</h3>
+            <ul>
+                {% for response in responses %}
+                    <li class="response-item">
+                        <div class="flex justify-center items-center">
+                            <a href={{ path('Edit_Rep',{'id': response.id}) }} class="flex items-center mr-3" href="javascript:;"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="check-square" data-lucide="check-square" class="lucide lucide-check-square w-4 h-4 mr-1"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg> Edit </a>
+                            <a href="{{ path('delete', {'id': response.id}) }}"class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="trash-2" data-lucide="trash-2" class="lucide lucide-trash-2 w-4 h-4 mr-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> 
+                                Delete </a>
+                        </div>
+                        {{ response.getDescriptionRep() }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{{ path('app_addRep') }}" class="btn btn-primary btn-treat-reclamation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="check-square" data-lucide="check-square" class="lucide lucide-check-square w-4 h-4 mr-1">
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+            </svg> Traiter Reclamation
+        </a>
+    </div>
+
+    
+
+{% endblock %}

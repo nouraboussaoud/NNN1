@@ -33,7 +33,7 @@ class ReponseController extends AbstractController
 
 
     #[Route('/add_Rep', name: 'app_addRep')]
-    public function add_Rep(ManagerRegistry $manager,Request $req): Response
+    public function add_Rep(ManagerRegistry $manager,Request $req,ReponseRepository $reponseRepository): Response
     {
         $em = $manager->getManager();
 
@@ -45,10 +45,14 @@ class ReponseController extends AbstractController
        
         if ($form3->isSubmitted()) {
 
+            $reclamation = $Rep->getRepRec();
+            $reclamation->setEtat('traite');
             $em->persist($Rep);
+            $em->persist($reclamation);
             $em->flush();
 
-            return $this->redirectToRoute('app_list_Rep');
+            
+            return $this->redirectToRoute('admin_reclamation_detail', ['id' => $reclamation->getId()]);
         }
 
         return $this->renderForm('Admin/reponse/Add_rep.html.twig', ['form2' => $form3]);
@@ -66,9 +70,13 @@ class ReponseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            
+
+            $reclamation = $autToEdit->getRepRec();
+
             $em->persist($autToEdit);
             $em->flush();
-            return $this->redirectToRoute('app_list_Rep');
+            return $this->redirectToRoute('admin_reclamation_detail', ['id' => $reclamation->getId()]);
         }
 
         return $this->render('Admin/reponse/Edit_rep.html.twig', [  'reponses' => $autToEdit,       
@@ -77,19 +85,18 @@ class ReponseController extends AbstractController
 
     }
 
-
-
-
     #[Route('/delete_reponse/{id}', name: 'delete')]
     public function delete_reponse(Request $request, $id, ManagerRegistry $manager, ReponseRepository $autrep): Response
     {
         $em = $manager->getManager();
         $aut = $autrep->find($id);
 
+        $reclamation = $aut->getRepRec();
+
         $em->remove($aut);
         $em->flush();
 
-        return $this->redirectToRoute('app_list_Rep');
+        return $this->redirectToRoute('admin_reclamation_detail', ['id' => $reclamation->getId()]);
     }
 
 
@@ -100,5 +107,7 @@ class ReponseController extends AbstractController
        ['reponses'=>$repos->findAll(),]);
     }
    
+
+
 
 }

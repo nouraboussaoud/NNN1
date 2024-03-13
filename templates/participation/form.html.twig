@@ -1,0 +1,56 @@
+{# templates/participation/form.html.twig #}
+
+{% extends "User/base.html.twig" %}
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+{% block reclamation %}   {% endblock %}
+
+
+{% block body %}
+
+
+<style>
+
+    .form-container {
+        max-width: 600px; /* Set the maximum width for the form container */
+        margin: auto; /* Center the form container horizontally */
+        padding: 20px; /* Add some padding to the form container */
+        background-color: white; /* Set the background color for the form container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a better look */
+        margin-top: 50px; /* Adjust the top margin to center vertically */
+        height: 600px;
+        
+    }
+
+    .input-form {
+        margin-bottom: 15px; /* Add some bottom margin between input fields */
+    }
+
+    .center-button {
+        text-align: center; /* Center the button text */
+
+
+    }
+</style>
+
+<div class="form-container">
+
+<form action="{{ path('participation_submit') }}" method="post">
+    <div class="input-form">
+        <label for="name">Name:</label>
+        <input   type="text" id="name" name="name" required><br>
+    </div>
+   
+    <label for="id_card">ID Card:</label>
+    <input type="text" id="id_card" name="id_card" required><br>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" required><br>
+    <a href="{{ path('participation_form') }}" class="btn btn-primary"  ,  text-align: center >SEND </a>    </div>
+</form>
+
+
+</div>
+{% endblock %}

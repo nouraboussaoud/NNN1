@@ -2,6 +2,7 @@
 
 namespace App\Form;
 use App\Entity\Reclamation;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +18,14 @@ class ReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('user', EntityType::class, [
+            'class' => User::class, // Utilisez le nom complet de la classe Author
+            'choice_label' => 'id',
+            'disabled' => true, 
+            'data' => $options['preselected_user'],// Utilisez la propriété 'username' de l'entité Author
+           
+        
+        ])
             ->add('object', null, [
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -40,6 +49,10 @@ class ReclamationType extends AbstractType
             ])
             //->add('etat')
             
+            ->add('imageFile', FileType::class,[
+                'label'=> 'Image(JPEG or PNG file)',
+                'required'=> false,
+            ])
         ;
     }
 
@@ -47,6 +60,8 @@ class ReclamationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reclamation::class,
+            'preselected_user' => null,
         ]);
     }
+    
 }

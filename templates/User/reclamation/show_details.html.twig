@@ -1,0 +1,100 @@
+
+{% extends 'User/base.html.twig' %}
+
+
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+
+
+
+{% block body %}
+
+<style>   
+    .body-with-white-background {
+        background-color: #ffffff; /* White */
+        padding: 20px; /* Add padding if necessary */
+    }
+
+    .reclamation-details {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #006400; /* Dark Green */
+        margin-bottom: 20px;
+    }
+
+    .details-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px; /* Add vertical spacing */
+    }
+
+    .details-value {
+        font-size: 16px;
+        margin-bottom: 20px; /* Add vertical spacing */
+    }
+
+    .responses-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px; /* Add vertical spacing */
+    }
+
+    .response-item {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .btn-treat-reclamation {
+        margin-top: 20px;
+    }
+</style>    
+
+<div class="body-with-white-background">
+    <div class="reclamation-details">
+        <h2>Reclamation Details</h2>
+    </div>
+
+    <div class="details-label">Object:</div>
+    <div class="details-value">{{ reclamation.object }}</div>
+
+    <div class="details-label">Category:</div>
+    <div class="details-value">{{ reclamation.categorie }}</div>
+
+    <div class="details-label">Description:</div>
+    <div class="details-value">{{ reclamation.getDescriptionRec() }}</div>
+
+    <div class="details-label">Image:</div>
+       <div>
+          {% if reclamation.imageName %}
+         <img src="{{ asset('public/image/reclamation/' ~ reclamation.image_name) }}" alt="Reclamation Image" class="details-value">
+         {% else %}
+              <div class="details-value">No image uploaded</div>
+            {% endif %} 
+    </div>
+    
+    </div>
+    <div class="responses-list">
+        <h3   class="details-label">Responses:</h3>
+        <ul>
+            {% if responses is not empty %}
+                {% for response in responses %}
+                    <li class="response-item">
+                        {{ response.getDescriptionRep() }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="no-response"   style="color: red;" >  There is no response yet.</li>
+            {% endif %}
+        </ul>
+        
+    </div>
+    
+</div>
+
+{% endblock %}

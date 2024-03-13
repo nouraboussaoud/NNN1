@@ -1,0 +1,58 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block body %}
+
+<style>
+    .reclamation-details {
+        
+        font-size: 24px;
+        font-weight: bold;
+        color: #006400; /* Dark Green */
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="reclamation-details">
+    <h2>
+        statistical
+    </h2>
+
+    
+</div>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var data = {{ data|raw }};
+            var ctx = document.getElementById('chart').getContext('2d');
+
+            var chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.map(item => item.category),
+                    datasets: [{
+                        data: data.map(item => item.percentage), // Utilisez le pourcentage au lieu de la quantité
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                        ],
+                    }],
+                },
+            });
+        });
+    </script>
+    <a href="{{ path('app_admin') }}" class="btn btn-primary btn-treat-reclamation">
+        Back
+    </a>
+   
+
+{% endblock %}

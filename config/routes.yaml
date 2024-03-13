@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# config/routes.yaml
+app_statistics:
+    path: '/statistics'
+    controller: 'App\Controller\ReclamationController::statistics'
+    methods: ['GET']

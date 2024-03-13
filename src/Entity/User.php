@@ -45,6 +45,32 @@ class User
     #[ORM\ManyToMany(targetEntity: Quiz::class, mappedBy: 'UserQuiz')]
     private Collection $quizzes;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Reclamation::class)]
+    private Collection $reclamations;
+
+
+    public function addReclamation(Reclamation $reclamation): static
+{
+    if (!$this->reclamations->contains($reclamation)) {
+        $this->reclamations->add($reclamation);
+        $reclamation->setUser($this);
+    }
+
+    return $this;
+}
+
+public function removeReclamation(Reclamation $reclamation): static
+{
+    if ($this->reclamations->removeElement($reclamation)) {
+        // set the owning side to null (unless already changed)
+        if ($reclamation->getUser() === $this) {
+            $reclamation->setUser(null);
+        }
+    }
+
+    return $this;
+}
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();

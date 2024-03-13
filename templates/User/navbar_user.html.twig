@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+
+    <style>
+        /* Votre CSS ici */
+
+        .navbar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            background-color: #828282;
+            
+            padding-top: 20px;
+            top: 0;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            text-align: center;
+        }
+
+        .navbar a {
+            display: block;
+            color: green;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #828282;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Votre contenu HTML ici -->
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ path('app_adddynamique') }}">Send Reclamation</a></li>
+            <li><a href="{{ path('app_list') }}">List of Reclamations </a></li>
+        </ul>
+    </nav>
+
+    <!-- Reste du contenu HTML -->
+
+</body>
+</html>

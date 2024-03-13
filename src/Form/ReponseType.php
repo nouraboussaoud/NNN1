@@ -14,7 +14,7 @@ class ReponseType extends AbstractType
     {
         $builder
             ->add('description_Rep')
-           // ->add('Rep_Rec')
+           ->add('Rep_Rec')
            
             
         ;

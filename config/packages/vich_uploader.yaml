@@ -1,0 +1,9 @@
+
+vich_uploader:
+    db_driver: orm
+    storage: file_system        
+    mappings:
+       reclamation_images:
+            uri_prefix: public/image/reclamation
+            upload_destination: '%kernel.project_dir%/public/image/reclamation'
+            namer: Vich\UploaderBundle\Naming\HashNamer

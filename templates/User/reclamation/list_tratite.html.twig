@@ -1,0 +1,97 @@
+{% extends "User/base.html.twig" %}
+
+{% block group %}   {% endblock %}
+{% block event %}   {% endblock %}
+{% block market %}   {% endblock %}
+{% block quiz %}   {% endblock %}
+{% block reclamation %}   {% endblock %}
+
+{% block body %}
+<style>
+    .body-with-white-background {
+        background-color: #ffffff; /* Définissez la couleur de fond sur blanc (#ffffff) */
+    }
+
+    .search-container {
+        float: right; /* Déplace le conteneur de recherche vers la droite */
+        margin-top: 3px; /* Ajuste la marge supérieure pour l'alignement vertical */
+    }
+
+    .table-report {
+        padding-left: 220px; /* Ajoutez un padding à gauche pour compenser le décalage du nav bar */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd; /* Ajoute une bordure */
+        border-radius: 8px; /* Ajoute une bordure arrondie */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Ajoute une couleur de fond pour les en-têtes */
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<div class="body-with-white-background">
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+        <div class="dropdown">
+            <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
+        </div>
+        <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
+        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+            <div class="w-56 relative text-slate-500">
+                <input type="text" class="search-container" placeholder="Search...">
+                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <a href="{{ path('app_adddynamique', {'id': user.id ?? 0}) }}" class="btn btn-primary shadow-md mr-2" style="margin-top: 10px;">Add new Reclamation</a>
+    </div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th class="whitespace-nowrap">Numero Reclamation</th>
+            <th class="whitespace-nowrap">Category</th>
+            <th class="whitespace-nowrap">Status</th>
+            <th class="text-center whitespace-nowrap">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for oneauthor in reclamations %}
+            {% if oneauthor.getEtat() == 'traite' %}
+                <tr>
+                    <td class="font-medium">{{ oneauthor.id }}</td>
+                    <td class="font-medium">{{ oneauthor.categorie }}</td>
+                    <td>{{ oneauthor.getEtat() }}</td>
+                  
+
+
+                    <td class="text-center">
+                        <a href="{{ path('user_reclamation_detail', {'id': oneauthor.id}) }}">Show Details</a>
+
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
